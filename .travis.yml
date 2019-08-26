@@ -13,3 +13,4 @@ install:
   - npm install
 script:
   - expo publish --non-interactive
+  - expo build:android

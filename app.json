@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.tiqri.assetmanagement"
+      },
     "description": "",
     "githubUrl": "https://github.com/ChathurangaSandun/Tiqri.AssetManagement.App"
   }
