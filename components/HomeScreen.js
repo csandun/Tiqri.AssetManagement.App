@@ -17,16 +17,11 @@ export default class HomeScreen extends React.Component {
                 <Appbar.Header>
                     <Appbar.Content
                         title="Home"
-                        subtitle="Not implemented yet"
                         color="#ffffff"
-                        titleStyle={{textAlign: 'center'}}
-                        subtitleStyle={{textAlign: 'center'}}
+                        titleStyle={{textAlign: 'left'}}
+                        subtitleStyle={{textAlign: 'left'}}
                     />
                 </Appbar.Header>
-                <TextInput
-        label='Email'
-        onChangeText={text => this.setState({ text })}
-      />
             </View>
         );
     }

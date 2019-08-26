@@ -3,10 +3,6 @@ import { Animated, TouchableHighlight, View } from "react-native";
 import Icon from '@expo/vector-icons/FontAwesome';
 const SIZE = 60;
 class ScanButton extends Component {
-    constructor(props){
-        super(props)
-    }
-
 
     mode = new Animated.Value(0);
     toggleView = () => {
@@ -14,8 +10,10 @@ class ScanButton extends Component {
             toValue: this.mode._value === 0 ? 1 : 0,
             duration: 300
         }).start();
+        console.log(JSON.stringify(this.props));
 
-        this.props.navigation.navigate('Scan');
+        //this.props.navigation.navigate('Scan');
+        debugger;
         console.log('clicked');
     };
     render() {
@@ -57,7 +55,8 @@ class ScanButton extends Component {
                 alignItems: 'center'
             }}>                
                 <TouchableHighlight
-                    onPress={this.toggleView}
+                     onPress = {
+                        () => navigate("ScanScreen", {name:'Jane'})}
                     underlayColor="#639c00"
                     style={{
                         alignItems: 'center',

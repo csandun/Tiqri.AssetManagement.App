@@ -13,9 +13,45 @@ import SearchAssetsScreen from './components/SearchAssetsScreen';
 import ScanScreen from './components/ScanScreen';
 import ScanButton from './components/ScanButton';
 import HomeScreen from './components/HomeScreen';
+import AssetDetailsScreen from './components/AssetDetailsScreen';
+import SettingsScrean from './components/SettingsScreen';
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
+let app;
+app = {
+  visible: true
+} || app;
+
+
+const scanStack = createStackNavigator({
+  ScanScreen: ScanScreen,
+  DetailScreen: AssetDetailsScreen
+},
+  {
+    initialRouteName: "ScanScreen",
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#000258',
+        fonts: 'thin'
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'Asset Details',
+      navigationOptions: ({ navigation }) => {
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        const { routeName } = navigation.state.routes[navigation.state.index];
+        app.visible = true;
+        app.stackRouteName = routeName;
+        console.log('routename ' + routeName);
+        if (routeName === 'DetailScreen') {
+          app.visible = false;
+        } else {
+          app.visible = true;
+        }
+      },
+    }
+  });
 
 
 const TabNavigator = createBottomTabNavigator({
@@ -30,7 +66,8 @@ const TabNavigator = createBottomTabNavigator({
   },
 
   Inspection: {
-    screen: InspectionScreen, navigationOptions: {
+    screen: scanStack,
+    navigationOptions: {
       tabBarLabel: 'Inspection',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="md-barcode" color={tintColor} size={25} />
@@ -88,14 +125,19 @@ const TabNavigator = createBottomTabNavigator({
       },
       tabStyle: {}
     },
-  },
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        tabBarVisible: app.visible
+      }
+    },
+  }
 
 );
 
 const theme = {
   ...DefaultTheme,
   roundness: 2,
-  fonts: 'medium',
+  //fonts: 'medium',
   colors: {
     ...DefaultTheme.colors,
     primary: '#000258',
@@ -109,9 +151,9 @@ class App extends React.Component {
   render() {
     return (
       <PaperProvider theme={theme}>
-        <AppContainer/>
-        </PaperProvider>
-      )  
+        <AppContainer />
+      </PaperProvider>
+    )
   }
 
 }
