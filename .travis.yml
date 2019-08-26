@@ -1,21 +1,15 @@
 language: node_js
-node_js:
-  - node
-  - lts/*
+node_js: lts/*
+sudo: true
+before_install:
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update && sudo apt-get install yarn
+  - sudo npm install -g expo-cli@2.2.0
+  - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 cache:
-  directories:
-    - ~/.npm
-    - .jest
-before_script:
-  - npm install -g npm@latest
-  - npm install -g npx
+  yarn: true
+install:
+  - npm install
 script:
-  - npm ci
-jobs:
-  include:
-    - stage: deploy
-      node_js: lts/*
-      script:
-        - npm ci
-        - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-        - npx expo publish --non-interactive
+  - expo publish --non-interactive
