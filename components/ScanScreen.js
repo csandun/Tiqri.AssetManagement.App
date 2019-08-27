@@ -67,29 +67,8 @@ export default class ScanScreen extends React.Component {
     //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     console.log(JSON.stringify(this.props.navigation));
     // check availability
-    fetch('https://tiqriassetmanagement20190826101850.azurewebsites.net/api/assets?assetId=' + data)
-    .then((response) => {      
-      response.json()
-    })
-      .then((responseJson) => {
-        console.log('json');
-        console.log(responseJson);
-        if (responseJson !== null) {
-          this.props.navigation.navigate('DetailScreen', { asset: responseJson, isExist: true });
-        } else {
-          this.props.navigation.navigate('DetailScreen', {
-            asset: {
-              assetId: data
-            },
-            isExist: false
-          });
-        }
 
-      })
-      .catch((error) => {
-        console.log("api error" + error);
-        alert(error.message);
-      });
-  };
+    this.props.navigation.navigate('DetailScreen', { assetId: data });
+  }
 
 }

@@ -56,7 +56,7 @@ class ScanButton extends Component {
             }}>                
                 <TouchableHighlight
                      onPress = {
-                        () => navigate("ScanScreen", {name:'Jane'})}
+                        () => this.toggleView()}
                     underlayColor="#639c00"
                     style={{
                         alignItems: 'center',
