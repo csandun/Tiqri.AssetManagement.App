@@ -1,10 +1,11 @@
-# Tiqri React native  - Tiqri academy - Final sample app
+# Tiqri React native  - Tiqri academy - Final sample app 
+[![Build Status](https://travis-ci.org/ChathurangaSandun/Tiqri.AssetManagement.App.svg?branch=master)](https://travis-ci.org/ChathurangaSandun/Tiqri.AssetManagement.App)
 
 ## Techologies
 1. React Native
 2. Expo CLI
 3. GitHub
-4. Travis CI/CD
+4. Travis CI/CD  
 5. Android APK build using Expo SDK using Travis Continuous Deployment
 
 ## Expo CLI
