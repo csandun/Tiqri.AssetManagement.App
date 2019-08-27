@@ -76,7 +76,7 @@ const TabNavigator = createBottomTabNavigator({
   },
 
   Scan: {
-    screen: () => null,
+    screen:scanStack,
     tabBarLabel: '',
     navigationOptions: () => ({
       tabBarIcon: <ScanButton />

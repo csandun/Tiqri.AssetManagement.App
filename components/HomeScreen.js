@@ -13,7 +13,7 @@ import { Appbar, TextInput   } from 'react-native-paper';
 export default class HomeScreen extends React.Component {
     render() {
         return (
-            <View>
+            <View >
                 <Appbar.Header>
                     <Appbar.Content
                         title="Home"
@@ -21,7 +21,10 @@ export default class HomeScreen extends React.Component {
                         titleStyle={{textAlign: 'left'}}
                         subtitleStyle={{textAlign: 'left'}}
                     />
+
+               
                 </Appbar.Header>
+                    <Text>Home page is not implement yet!</Text>
             </View>
         );
     }
