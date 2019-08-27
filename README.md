@@ -12,10 +12,15 @@ Follow this link and setup EXPO https://facebook.github.io/react-native/docs/get
 
 ## Github 
 App Link: https://github.com/ChathurangaSandun/Tiqri.AssetManagement.App
+
 Api Link: https://github.com/ChathurangaSandun/Tiqri.AssetManagement
 
 ## Expo link 
 https://expo.io/@sandunkumara/tiqriassetmanagement
+
+## API link
+https://tiqriassetmanagement20190826101850.azurewebsites.net
+
 You can try the app using Expo app and scanning the QR code
 
 ## Latest Build Apks
@@ -28,7 +33,7 @@ https://travis-ci.org/ChathurangaSandun/Tiqri.AssetManagement.App
 1. Login page
 2. Add loading image
 3. Update asset
-4. Colorfull the asset detail page
+
 
 
 
