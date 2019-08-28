@@ -7,6 +7,7 @@
 3. GitHub
 4. Travis CI/CD  
 5. Android APK build using Expo SDK using Travis Continuous Deployment
+6. firebase authentication
 
 ## Expo CLI
 Follow this link and setup EXPO https://facebook.github.io/react-native/docs/getting-started
@@ -31,8 +32,6 @@ https://expo.io/@sandunkumara/tiqriassetmanagement/builds
 https://travis-ci.org/ChathurangaSandun/Tiqri.AssetManagement.App
 
 ## TODO
-1. Login page
-2. Add loading image
 3. Update asset
 
 
