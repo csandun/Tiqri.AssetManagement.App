@@ -4,13 +4,22 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, } from 'react-native';
 
 
-import { Appbar, TextInput   } from 'react-native-paper';
+import { Appbar, Button } from 'react-native-paper';
 
 
-
+import * as firebase from 'firebase';
 
 
 export default class HomeScreen extends React.Component {
+    signOutUser = async () => {
+        try {
+            await firebase.auth().signOut();
+            this.props.navigate.navigate('Login');
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     render() {
         return (
             <View >
@@ -21,10 +30,10 @@ export default class HomeScreen extends React.Component {
                         titleStyle={{textAlign: 'left'}}
                         subtitleStyle={{textAlign: 'left'}}
                     />
-
-               
+                     {/* <Appbar.Action icon="user" onPress={() => this.signOutUser()} /> */}
                 </Appbar.Header>
-                    <Text>Home page is not implement yet!</Text>
+                    <Text style={{textAlign: 'center', marginTop:20}}>Logged User: {firebase.auth().currentUser.email}</Text>
+                    <Button onPress={() => this.signOutUser()} mode="contained" style={{margin:20}}>Log out</Button>
             </View>
         );
     }
