@@ -9,62 +9,29 @@ import { Appbar, TextInput   } from 'react-native-paper';
 
 
 export default class InspectionScreen extends React.Component {
-  state = {
-    hasCameraPermission: null,
-    scanned: false,
-  };
-
-  async componentDidMount() {
-    this.getPermissionsAsync();
-  }
-
-  getPermissionsAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === 'granted' });
-  };
+  ;
 
 
 
   render() {
-      const { hasCameraPermission, scanned } = this.state;
-
-    if (hasCameraPermission === null) {
-      return <Text>Requesting for camera permission</Text>;
-    }
-    if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
-    }
+   
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          backgroundColor: '#000000'
-        }}>
-          <Appbar.Header>
-                    <Appbar.Content
-                        title="Home"
-                        subtitle="Not implemented yet"
-                        color="#ffffff"
-                        titleStyle={{textAlign: 'center'}}
-                        subtitleStyle={{textAlign: 'center'}}
-                    />
-                </Appbar.Header>
-        <BarCodeScanner
-          onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
-          style={StyleSheet.absoluteFill}
-        />
+      <View >
+      <Appbar.Header>
+          <Appbar.Content
+              title="Inspection"
+              color="#ffffff"
+              titleStyle={{textAlign: 'left'}}
+              subtitleStyle={{textAlign: 'left'}}
+          />
 
-        {scanned && (
-          <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
-        )}
-      </View>
+     
+      </Appbar.Header>
+          <Text>Inspection is not implement yet!</Text>
+  </View>
     );
   }
 
-  handleBarCodeScanned = ({ type, data }) => {
-    this.setState({ scanned: true });
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-  };
+
 }
 

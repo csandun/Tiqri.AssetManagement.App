@@ -4,6 +4,12 @@ import Icon from '@expo/vector-icons/FontAwesome';
 const SIZE = 60;
 class ScanButton extends Component {
 
+
+    constructor(props){
+        super(props)
+        
+    }
+
     mode = new Animated.Value(0);
     toggleView = () => {
         Animated.timing(this.mode, {
@@ -12,43 +18,12 @@ class ScanButton extends Component {
         }).start();
         console.log(JSON.stringify(this.props));
 
-        //this.props.navigation.navigate('Scan');
+        //this.props.navigation.navigate('ScanScreen');
         debugger;
         console.log('clicked');
     };
     render() {
-        const firstX = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [20, -40]
-        });
-        const firstY = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -30]
-        });
-        const secondX = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [20, 20]
-        });
-        const secondY = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -55]
-        });
-        const thirdX = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [20, 80]
-        });
-        const thirdY = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -30]
-        });
-        const opacity = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1]
-        });
-        const rotation = this.mode.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['0deg', '45deg']
-        });
+        
         return (
             <View style={{
                 position: 'absolute',

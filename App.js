@@ -4,7 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   createStackNavigator,
   createBottomTabNavigator,
-  createAppContainer,
+  createAppContainer,  
+  createSwitchNavigator,
+  TabNavigator
+
 } from 'react-navigation';
 
 import BatchInspectionScreen from './components/BatchInspectionScreen';
@@ -16,13 +19,36 @@ import HomeScreen from './components/HomeScreen';
 import AssetDetailsScreen from './components/AssetDetailsScreen';
 import SettingsScrean from './components/SettingsScreen';
 
+import * as firebase from 'firebase';
+import Icon from '@expo/vector-icons/FontAwesome';
+
+
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
+
+import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
+import Home from './components/auth/Home';
+import Loading from './components/auth/Loading';
+import { setRecoveryProps } from 'expo/build/ErrorRecovery/ErrorRecovery';
+
+
+var firebaseConfig = {
+  apiKey: "AIzaSyAxnJTiYEnFrj_5UQWMUNvENDksbF3At3A",
+  authDomain: "tiqri-asset-management.firebaseapp.com",
+  databaseURL: "https://tiqri-asset-management.firebaseio.com",
+  projectId: "tiqri-asset-management",
+  storageBucket: "",
+  messagingSenderId: "238881156073",
+  appId: "1:238881156073:web:25315ac9dab6e1b8"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 let app;
 app = {
   visible: true
 } || app;
-
 
 const scanStack = createStackNavigator({
   ScanScreen: ScanScreen,
@@ -39,7 +65,6 @@ const scanStack = createStackNavigator({
       headerTintColor: '#FFFFFF',
       title: 'Asset Details',
       navigationOptions: ({ navigation }) => {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         const { routeName } = navigation.state.routes[navigation.state.index];
         app.visible = true;
         app.stackRouteName = routeName;
@@ -52,9 +77,10 @@ const scanStack = createStackNavigator({
       },
     }
   });
+  
 
 
-const TabNavigator = createBottomTabNavigator({
+const tabNavigator = createBottomTabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -64,9 +90,8 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-
   Inspection: {
-    screen: scanStack,
+    screen: InspectionScreen,
     navigationOptions: {
       tabBarLabel: 'Inspection',
       tabBarIcon: ({ tintColor }) => (
@@ -75,22 +100,33 @@ const TabNavigator = createBottomTabNavigator({
     }
   },
 
+  
   Scan: {
-    screen:scanStack,
+    screen: scanStack,
     tabBarLabel: '',
-    navigationOptions: () => ({
-      tabBarIcon: <ScanButton />
-    })
+    navigationOptions: {
+      tabBarLabel: 'Scan',
+      activeTintColor: '#000258',
+      tabBarIcon: ({ tintColor }) => (
+        // <Ionicons name="qrcode" color={tintColor} size={25} />
+        <View style={{backgroundColor: '#78bb00', width: 50,
+        height: 60,
+        borderRadius: 60/2, flex:1, justifyContent: 'center',
+        alignItems: 'center'}} >
+          <Icon name="qrcode"  size={24} color="#F8F8F8" />
+        </View>
+      )
+    }
   },
 
 
   BatchInspection: {
     screen: BatchInspectionScreen,
-    navigationOptions: {
+    navigationOptions: {      
       tabBarLabel: 'Batch Inspection',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="md-list-box" color={tintColor} size={25} />
-      )
+      ),
     }
   },
 
@@ -118,7 +154,7 @@ const TabNavigator = createBottomTabNavigator({
     initialRouteName: "Home",
     tabBarOptions: {
       showLabel: false,
-      activeTintColor: '#F8F8F8',
+      activeTintColor: '#78bb00',
       inactiveTintColor: '#586589',
       style: {
         backgroundColor: '#000258'
@@ -134,6 +170,29 @@ const TabNavigator = createBottomTabNavigator({
 
 );
 
+
+const navigator = createSwitchNavigator(
+  {
+    Loading,
+    SignUp,
+    Login,
+    Home: {
+      screen: tabNavigator
+    }
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+)
+
+
+
+
+
+
+
+
+
 const theme = {
   ...DefaultTheme,
   roundness: 2,
@@ -145,7 +204,7 @@ const theme = {
   },
 };
 
-const AppContainer = createAppContainer(TabNavigator);
+const AppContainer = createAppContainer(navigator);
 
 class App extends React.Component {
   render() {
@@ -159,6 +218,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-//export default createAppContainer(TabNavigator);

@@ -60,6 +60,7 @@ export default class AssetDetailsScreen extends React.Component {
       .then((result) => {
         result.json()
         alert('Asset Added');
+        this.props.navigation.navigate('ScanScreen');
       }).then(result => {
         console.log(result)
       })
